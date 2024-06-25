@@ -1,0 +1,53 @@
+﻿@page "/patients/create"
+@inherits CreatePatientPage
+
+<MudText Typo="Typo.h3">Patient registration</MudText>
+
+<MudPaper Class="pa-8 mt4">
+
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator/>
+
+        <MudTextField Label="Name"
+                    Variant="Variant.Outlined"
+                    HelperText="Required field"
+                    @bind-Value="InputModel.Name"
+                    For="@(() => InputModel.Name)"/>
+
+        <MudTextField Label="Document"
+                          Variant="Variant.Outlined"
+                          HelperText="Required field"
+                          @bind-Value="InputModel.Document"
+                          Mask="@(new PatternMask("000.000.000-00"))"
+                          For="@(() => InputModel.Document)"/>
+
+        <MudTextField Label="E-mail"
+                      Variant="Variant.Outlined"
+                      HelperText="Required field"
+                      @bind-Value="InputModel.Email"
+                      For="@(() => InputModel.Email)" />
+
+        <MudTextField Label="CellPhone"
+                      Variant="Variant.Outlined"
+                      HelperText="Required field"
+                      @bind-Value="InputModel.Cellphone"
+                      Mask="@(new PatternMask("(00) 0 0000-0000"))"
+                      For="@(() => InputModel.Cellphone)" />
+
+        <MudDatePicker Label="Birthday"
+            Editable="false"
+        @bind-Date="Birthday"
+        Variant="Variant.Outlined"
+        Placeholder="Data de nascimento"/>
+
+        <MudDivider Class="m-4"/>
+
+        <MudButton Variant="Variant.Filled"
+        StartIcon="@Icons.Material.Filled.Save"
+        Color="Color.Info"
+        Size="Size.Large"
+        ButtonType="ButtonType.Submit">Save</MudButton>
+            
+    </EditForm>
+
+</MudPaper>

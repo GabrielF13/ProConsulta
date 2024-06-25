@@ -1,0 +1,36 @@
+﻿@page "/patients"
+@inherits IndexPage
+
+<MudText Typo="Typo.h3">Patients</MudText>
+
+<MudButton Variant="Variant.Filled"
+StartIcon="@Icons.Material.Filled.Add"
+Color="Color.Info"
+Size="Size.Large"
+Href="/patients/Create"
+Class="mt-md-4 mb-4">New patients</MudButton>
+
+<MudDataGrid Items="@Patients" Filterable="false" SortMode="@SortMode.Single" Groupable="false">
+    <Columns>
+        <PropertyColumn Property="x => x.Name"/>
+        <PropertyColumn Property="x => x.Document"/>
+        <PropertyColumn Property="x => x.Email"/>
+        <PropertyColumn Property="x => x.Cellphone"/>
+        <PropertyColumn Property="x => x.Birthday" Format="dd/MM/yyyy"/>
+        <TemplateColumn>
+            <CellTemplate>
+                <MudStack Row>
+                    <MudFab Size="Size.Small" Label="Editar" 
+                        @OnClick="@(()=> GoToUpdate(context.Item.Id))" 
+                        StartIcon="@Icons.Material.Filled.Edit"
+                        Color="Color.Success"></MudFab>
+
+                    <MudFab Size="Size.Small" Label="Excluir"
+                        @OnClick="@(()=> DeletePatient(context.Item))"
+                        StartIcon="@Icons.Material.Filled.Delete"
+                        Color="Color.Error"></MudFab>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
