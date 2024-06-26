@@ -41,8 +41,17 @@ namespace ProConsulta.Repositories.Patients
 
         public async Task UpdateAsync(Patient patient)
         {
-            _context.Update(patient);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Update(patient);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
     }
 }
