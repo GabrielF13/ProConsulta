@@ -15,8 +15,16 @@ namespace ProConsulta.Repositories.Doctors
 
         public async Task AddAsync(Doctor doctor)
         {
-            _context.Doctors.Add(doctor);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Doctors.Add(doctor);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                _context.ChangeTracker.Clear();
+                throw;
+            }
         }
 
         public async Task DeleteByIdAsync(int id)
@@ -41,8 +49,16 @@ namespace ProConsulta.Repositories.Doctors
 
         public async Task UpdateAsync(Doctor doctor)
         {
-            _context.Update(doctor);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Update(doctor);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                _context.ChangeTracker.Clear();
+                throw;
+            }
         }
     }
 }

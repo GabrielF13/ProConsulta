@@ -1,0 +1,65 @@
+﻿@page "/scheduling/create"
+@inherits CreateSchedulingPage
+
+
+<PageTitle>Agendamentos</PageTitle>
+
+<MudText Typo="Typo.h3">Cadastro de Agendamentos</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+
+        <DataAnnotationsValidator />
+
+        <MudTextField Label="Observation"
+                      Variant="Variant.Outlined"
+                      @bind-Value="InputModel.Observation"
+                      For="@(()=> InputModel.Observation)" />
+
+        <MudSelect Label="Patient"
+                   @bind-Value="InputModel.PatientId"
+                   Variant="Variant.Outlined"
+                   AnchorOrigin="Origin.BottomCenter"
+                   For="@(()=> InputModel.PatientId)">
+            @foreach (var patient in Patients)
+            {
+                <MudSelectItem Value="@patient.Id">@patient.Name</MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudSelect Label="Doctor"
+                   @bind-Value="InputModel.DoctorId"
+                   Variant="Variant.Outlined"
+                   AnchorOrigin="Origin.BottomCenter"
+                   For="@(()=> InputModel.DoctorId)">
+            @foreach (var doctor in Doctors)
+            {
+                <MudSelectItem Value="@doctor.Id">@doctor.Name</MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudDatePicker Variant="Variant.Outlined"
+                       @bind-Date="date"
+                       Label="Schedule date"
+                       MinDate="MinDate"
+                       DateFormat="dd/MM/yyyy" />
+
+        <MudTimePicker @bind-Time="time"
+                       Variant="Variant.Outlined"
+                       Label="Schedule time"
+                       AmPm="false" />
+
+        <MudDivider Class="m-4" /> 
+
+        <MudButton Variant="Variant.Filled"
+                   StartIcon="@Icons.Material.Filled.Save"
+                   Color="Color.Info"
+                   Size="Size.Large"
+                   ButtonType="ButtonType.Submit">
+            SAVE
+        </MudButton>
+
+    </EditForm>
+
+</MudPaper>

@@ -21,6 +21,7 @@ namespace ProConsulta.Components.Pages.Patients
         public PatientInputModel InputModel { get; set; } = new PatientInputModel();
 
         public DateTime? Birthday { get; set; } = DateTime.Today;
+        public DateTime? MaxDate { get; set; } = DateTime.Today;
 
         public async Task OnValidSubmitAsync(EditContext editContext)
         {
