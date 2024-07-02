@@ -21,11 +21,13 @@ Class="mt-md-4 mb-4">New patients</MudButton>
             <CellTemplate>
                 <MudStack Row>
                     <MudFab Size="Size.Small" Label="Editar" 
+                        hidden="@HideButtons"
                         @onclick="@(()=> GoToUpdate(context.Item.Id))" 
                         StartIcon="@Icons.Material.Filled.Edit"
                         Color="Color.Success"></MudFab>
 
                     <MudFab Size="Size.Small" Label="Excluir"
+                        hidden="@HideButtons"
                         @onclick="@(()=> DeletePatient(context.Item))"
                         StartIcon="@Icons.Material.Filled.Delete"
                         Color="Color.Error"></MudFab>

@@ -42,5 +42,13 @@ namespace ProConsulta.Repositories.Schedulings
                 .Include(x => x.Doctor)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<List<AnnualSchedules>?> GetReportAsync()
+        {
+            var result = _context.Database.SqlQuery<AnnualSchedules>
+                ($"SELECT MONTH(ConsultationDate) AS Month, COUNT(*) AS NumberAppointments FROM Schedulings WHERE YEAR(ConsultationDate) = {DateTime.Today.Year} GROUP BY MONTH(ConsultationDate) ORDER BY Month;");
+
+            return await Task.FromResult(result.ToList());
+        }
     }
 }

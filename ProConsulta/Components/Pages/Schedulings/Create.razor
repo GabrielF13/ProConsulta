@@ -1,6 +1,9 @@
 ﻿@page "/scheduling/create"
+@using Microsoft.AspNetCore.Authorization
+
 @inherits CreateSchedulingPage
 
+@attribute [Authorize(Roles = "Atendente")]
 
 <PageTitle>Agendamentos</PageTitle>
 

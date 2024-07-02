@@ -52,7 +52,7 @@ namespace ProConsulta.Components.Pages.Schedulings
         protected override async Task OnInitializedAsync()
         {
             var auth = await AuthenticationState;
-            //HideButtons = !auth.User.IsInRole("Atendente");
+            HideButtons = !auth.User.IsInRole("Atendente");
 
             Schedulings = await SchedulingRepository.GetAllAsync();
         }
